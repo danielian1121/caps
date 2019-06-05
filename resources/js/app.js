@@ -12,4 +12,14 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/Example');
+import React from 'react'
+import {render} from 'react-dom'
+
+import SchemaRouter from './router.jsx'
+
+let render_content = document.getElementById('app-content')
+if(render_content)
+	render(
+			<SchemaRouter />,
+			render_content
+		)

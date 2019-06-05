@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware('auth')->group(function(){
+	Route::view('/app/{path?}','app')->where('path','.*');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

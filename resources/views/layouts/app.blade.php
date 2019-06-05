@@ -39,6 +39,14 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        @auth
+                            @if(auth()->user()->identity == 'admin')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/app/dashboard">管理頁面</a>
+                                </li>
+                            @endif
+                        @endauth
+
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
