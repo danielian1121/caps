@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/{any}', function () {
     return view('welcome');
-});
+})
+->where('any', '.*');
 
 Route::middleware('auth')->group(function(){
 	Route::view('/app/{path?}','app')->where('path','.*');

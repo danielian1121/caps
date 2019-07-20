@@ -6,33 +6,29 @@ import {
 	Link
 } from 'react-router-dom'
 
-import Dashboard from './components/Schema/dashboard.jsx'
-
-function Home(){
-	return(
-			<div>
-				<h1>Home</h1>
-			</div>
-		)
-}
+import Dashboard from './components/schema/dashboard'
+import Home from './caps/index'
+import Edit from './caps/admin/welcomePage/edit'
+import Admin from './caps/admin/index'
 
 function NotFound(){
 	return(
-			<div>
-				<p>The Url is broken or something went wrong!</p>
-				<p>Click to return home <Link to="/" className="btn btn-sm btn-secondary">return</Link></p>
-			</div>
-		)
+		<div>
+			<p>The Url is broken or something went wrong!</p>
+			<p>Click to return home <Link to="/" className="btn btn-sm btn-secondary">return</Link></p>
+		</div>
+	)
 }
 
-export default function SchemaRouter(){
+export default () =>{
 	return (
-			<Router basename="/app">
-				<Switch>
-					<Route exact path="/" component={Home}/>
-					<Route path="/dashboard" component={Dashboard}/>
-					<Route component={NotFound} />
-				</Switch>
-			</Router>
-		)
+		<Router basename='/app'>
+			<Switch>
+				<Route exact path='/' component={Home}/>
+				<Route path='/admin' component={Admin}/>
+				<Route path='/dashboard' component={Dashboard}/>
+				<Route component={NotFound} />
+			</Switch>
+		</Router>
+	)
 }

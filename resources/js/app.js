@@ -14,12 +14,13 @@ require('./bootstrap');
 
 import React from 'react'
 import {render} from 'react-dom'
+import 'normalize.css'
 
 import SchemaRouter from './router.jsx'
 
 let render_content = document.getElementById('app-content')
 if(render_content)
 	render(
-			<SchemaRouter />,
-			render_content
-		)
+		<SchemaRouter />,
+		render_content
+	)
