@@ -18,7 +18,7 @@ class CreateAppUserTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('app_id')->unsigned();
-            $table->foreign('app_id')->references('id')->on('applications');
+            $table->foreign('app_id')->references('id')->on('application');
             $table->boolean('enable')->default(false);
             $table->timestamps();
         });
