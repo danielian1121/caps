@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/{any}', function () {
     return view('welcome');
-});
+})
+->where('any', '.*');
 
 Route::apiResource('/api/welcome', 'api\WelcomeController');
 

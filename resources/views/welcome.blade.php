@@ -41,6 +41,8 @@
             }
 
             .content {
+                width: 100%;
+                height: 100%;
                 text-align: center;
             }
 
@@ -48,6 +50,10 @@
                 font-size: 84px;
             }
 
+            .links {
+                width: 100%;
+                height: 100%;
+            }
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -65,6 +71,7 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            {{--
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -78,12 +85,8 @@
                     @endauth
                 </div>
             @endif
-
+            --}}
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
                 <div id="app-content" class="links">
                     <script src="{{url('/js/app.js')}}"></script>
                 </div>
