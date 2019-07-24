@@ -16,11 +16,9 @@ Route::get('/{any}', function () {
 })
 ->where('any', '.*');
 
-Route::apiResource('/api/welcome', 'api\WelcomeController');
-
-/*Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function(){
 	Route::view('/app/{path?}','app')->where('path','.*');
-});*/
+});
 
 Auth::routes();
 

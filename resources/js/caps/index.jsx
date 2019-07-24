@@ -3,18 +3,35 @@ import styled from 'styled-components'
 import Body from './common/main'
 import Banner from './common/banner'
 import Footer from './common/footer'
+import {NotificationContainer, NotificationManager} from 'react-notifications'
+
+import 'react-notifications/lib/notifications.css'
 
 class Home extends React.Component{
   constructor(props) {
     super(props)
     this.state = {
-      content: '各位同學大家好:\n歡迎來到'
+      content: ''
     }
   }
 
-  // TODO:  跟後端拿系統簡介
   componentDidMount() {
+    //TODO: 顯示修改成功放到設定主業
+    if (this.props.location.state) {
+      NotificationManager.success(this.props.location.state.message, this.props.location.state.title)
+    }
+    this.props.history.replace('/', null)
 
+
+    fetch('/api/welcome/1')
+      .then(response => {
+        return response.json()
+      })
+      .then(myJson => {
+        this.setState({
+          content: myJson.content
+        })
+      })
   }
 
   render() {
@@ -62,6 +79,7 @@ class Home extends React.Component{
           <Content>{this.state.content}</Content>
         </Main>
         <Footer />
+        <NotificationContainer/>
       </Body>
     )
   }

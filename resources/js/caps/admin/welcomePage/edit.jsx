@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Body from '../../common/main'
 import Banner from '../../common/banner'
 import Footer from '../../common/footer'
+import { Redirect } from 'react-router'
 
 class WelcomeEdit extends React.Component{
 
@@ -10,12 +11,21 @@ class WelcomeEdit extends React.Component{
     super(props)
     this.textareaInput = React.createRef()
     this.state = {
-      content: 'Please write an essay about your favorite DOM element.'
+      content: ''
     }
   }
 
   // TODO:  跟後端拿系統簡介
   componentDidMount() {
+    fetch('/api/welcome/1')
+      .then(response => {
+        return response.json()
+      })
+      .then(myJson => {
+        this.setState({
+          content: myJson.content
+        })
+      })
   }
 
   handleChange = e => {
@@ -84,6 +94,35 @@ class WelcomeEdit extends React.Component{
         border-color: rgb(8, 12, 15);
       }
     `
+
+    const handleSubmit = () => {
+      fetch('/api/welcome/1', {
+        headers: {
+          'content-type': 'application/json',
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        method: 'put',
+        body: JSON.stringify({
+          content: this.textareaInput.current.value
+        })
+      })
+      .then(response => {
+        return response.json()
+      })
+      .then(myJson => {
+        if (myJson.status === true)
+        {
+          this.props.history.push({
+            pathname: '/',
+            state: {
+              title: '系統說明',
+              message: '修改成功'
+            }
+          })
+        }
+      })
+    }
+
     return (
       <Body>
         <Banner />
@@ -91,9 +130,7 @@ class WelcomeEdit extends React.Component{
           <Form>
             <Title>編輯系統說明</Title>
             <Edit ref={this.textareaInput} defaultValue={this.state.content} />
-            <Submit type='submit' value='儲存' onClick={() => {
-              console.log(this.textareaInput.current.value)
-            }} />
+            <Submit type='submit' value='儲存' onClick={handleSubmit} />
           </Form>
         </Main>
         <Footer />
