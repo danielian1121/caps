@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 
-Route::resource('welcome', 'api\WelcomeController')->only([
+Route::resource('welcome', 'caps\admin\WelcomeController')->only([
     'show', 'update'
 ]);
 
