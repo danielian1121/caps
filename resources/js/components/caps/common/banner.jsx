@@ -36,11 +36,11 @@ const Banner = props => {
     <Body>
       <Image src='/image/banner.jpg' />
       <Nav>
-        <Button url='/image/button_01.png' width='70px' hover='/image/button_014.png'/>
-        <Button url='/image/button_04.png' hover='/image/button_044.png'/>
-        <Button url='/image/button_05.png' hover='/image/button_054.png'/>
-        <Button url='/image/button_06.png' width='60px' hover='/image/button_064.png'/>
-        <Button url='/image/button_08.png' hover='/image/button_083.png'/>
+        <Button href='/app/caps' url='/image/button_01.png' width='70px' hover='/image/button_014.png'/>
+        <Button href='/app/caps/question' url='/image/button_04.png' hover='/image/button_044.png'/>
+        <Button href='#' url='/image/button_05.png' hover='/image/button_054.png'/>
+        <Button href='/app/caps/admin' url='/image/button_06.png' width='60px' hover='/image/button_064.png'/>
+        <Button href='#' url='/image/button_08.png' hover='/image/button_083.png'/>
       </Nav>
     </Body>
   )

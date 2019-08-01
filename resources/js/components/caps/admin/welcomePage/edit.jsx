@@ -1,9 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Body from '../../common/main'
-import Banner from '../../common/banner'
-import Footer from '../../common/footer'
-import { Redirect } from 'react-router'
 
 class WelcomeEdit extends React.Component{
 
@@ -35,20 +31,6 @@ class WelcomeEdit extends React.Component{
   }
 
   render() {
-    const Main = styled.div`
-      margin-left: auto;
-      margin-right: auto;
-      @media screen and (min-width: 768px) {
-        width: 750px;
-      }
-      @media screen and (min-width: 992px) {
-        width: 970px;
-      }
-      @media screen and (min-width: 1200px) {
-        width: 1170px;
-      }
-    `
-
     const Form = styled.div`
       display: flex;
       flex-direction: column;
@@ -67,7 +49,7 @@ class WelcomeEdit extends React.Component{
       margin-top: 20px;
       margin-left: auto;
       margin-right: auto;
-      width: 80%;
+      width: 60%;
       height: 281px;
       resize: none;
     `
@@ -113,7 +95,7 @@ class WelcomeEdit extends React.Component{
         if (myJson.status === true)
         {
           this.props.history.push({
-            pathname: '/',
+            pathname: '/caps',
             state: {
               title: '系統說明',
               message: '修改成功'
@@ -124,17 +106,11 @@ class WelcomeEdit extends React.Component{
     }
 
     return (
-      <Body>
-        <Banner />
-        <Main>
-          <Form>
-            <Title>編輯系統說明</Title>
-            <Edit ref={this.textareaInput} defaultValue={this.state.content} />
-            <Submit type='submit' value='儲存' onClick={handleSubmit} />
-          </Form>
-        </Main>
-        <Footer />
-      </Body>
+      <Form>
+        <Title>編輯系統說明</Title>
+        <Edit ref={this.textareaInput} defaultValue={this.state.content} />
+        <Submit type='submit' value='儲存' onClick={handleSubmit} />
+      </Form>
     )
   }
 }

@@ -7,9 +7,13 @@ import {
 } from 'react-router-dom'
 
 import Dashboard from './components/schema/dashboard'
-import Home from './caps/index'
-import Edit from './caps/admin/welcomePage/edit'
-import Admin from './caps/admin/index'
+import Caps from './components/caps/index'
+
+function Home() {
+	return(
+		<h1>Home</h1>
+	)
+}
 
 function NotFound(){
 	return(
@@ -25,7 +29,7 @@ export default () =>{
 		<Router basename='/app'>
 			<Switch>
 				<Route exact path='/' component={Home}/>
-				<Route path='/admin' component={Admin}/>
+				<Route path='/caps' component={Caps}/>
 				<Route path='/dashboard' component={Dashboard}/>
 				<Route component={NotFound} />
 			</Switch>

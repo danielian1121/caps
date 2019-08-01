@@ -3,11 +3,16 @@ import styled from 'styled-components'
 import Body from './common/main'
 import Banner from './common/banner'
 import Footer from './common/footer'
+import Admin from './admin/index'
+import Question from './question/index'
 import {NotificationContainer, NotificationManager} from 'react-notifications'
+import {
+	Route,
+} from 'react-router-dom'
 
 import 'react-notifications/lib/notifications.css'
 
-class Home extends React.Component{
+class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -20,7 +25,7 @@ class Home extends React.Component{
     if (this.props.location.state) {
       NotificationManager.success(this.props.location.state.message, this.props.location.state.title)
     }
-    this.props.history.replace('/', null)
+    this.props.history.replace('/caps', null)
 
 
     fetch('/api/welcome/1')
@@ -35,7 +40,6 @@ class Home extends React.Component{
   }
 
   render() {
-
     const Main = styled.div`
       display: flex;
       flex-direction: column;
@@ -70,14 +74,28 @@ class Home extends React.Component{
       letter-spacing: 3px;
       color: #000000;
     `
+    return (
+      <Main>
+        <Title>系統簡介</Title>
+        <Content>{this.state.content}</Content>
+      </Main>
+    )
+  }
+}
+
+class Index extends React.Component{
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
 
     return (
       <Body>
         <Banner />
-        <Main>
-          <Title>系統簡介</Title>
-          <Content>{this.state.content}</Content>
-        </Main>
+        <Route exact path={this.props.match.path} component={Home}/>
+        <Route path={`${this.props.match.path}/admin`} component={Admin}/>
+        <Route path={`${this.props.match.path}/question`} component={Question}/>
         <Footer />
         <NotificationContainer/>
       </Body>
@@ -85,4 +103,4 @@ class Home extends React.Component{
   }
 }
 
-export default Home
+export default Index
