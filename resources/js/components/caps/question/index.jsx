@@ -4,6 +4,8 @@ import {
 	Route,
 } from 'react-router-dom'
 
+import Create from './create/index'
+
 class Index extends React.Component {
 	constructor(props) {
 		super(props)
@@ -62,7 +64,7 @@ class Index extends React.Component {
 		return (
 			<Main>
         <Title>出題系統</Title>
-        <Button href='#'>新增題目</Button>
+        <Button href='/app/caps/question/create'>新增題目</Button>
         <Button href='#'>管理題目</Button>
         <Button href='#'>閱讀回饋</Button>
 			</Main>
@@ -74,7 +76,7 @@ export default ({ match }) =>{
 	return (
     <div style={{height: '75%', overflowX: 'auto'} }>
       <Route exact path={match.path} component={Index}/>
-      <Route path={match.path} component={Index}/>
+      <Route path={`${match.url}/create`} component={Create}/>
     </div>
 	)
 }

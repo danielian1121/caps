@@ -8,6 +8,8 @@ import {
 
 import Dashboard from './components/schema/dashboard'
 import Caps from './components/caps/index'
+import Workshop from './components/workshop/index'
+import Edpsygame from './components/edpsygame/index'
 
 function Home() {
 	return(
@@ -31,6 +33,8 @@ export default () =>{
 				<Route exact path='/' component={Home}/>
 				<Route path='/caps' component={Caps}/>
 				<Route path='/dashboard' component={Dashboard}/>
+				<Route path='/workshop' component={Workshop}/>
+				<Route path='/edpsygame' component={Edpsygame}></Route>
 				<Route component={NotFound} />
 			</Switch>
 		</Router>

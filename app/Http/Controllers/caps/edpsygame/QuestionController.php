@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\caps\admin;
+namespace App\Http\Controllers\caps\edpsygame;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Explanation;
 
-class WelcomeController extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,6 +15,28 @@ class WelcomeController extends Controller
     public function index()
     {
         //
+        try {
+            $handle = fopen("edpsygame/question.csv", "r");
+            $header = true;
+            $result = [];
+            while ($csvLine = fgetcsv($handle)) {
+                if ($header) {
+                    $header = false;
+                } else {
+                    $element = array(
+                        'id' => $csvLine[0],
+                        'question' => $csvLine[1],
+                        'singletips' => $csvLine[2],
+                        'fourtips' => $csvLine[3],
+                        'answer' => $csvLine[4]
+                    );
+                    array_push($result, $element);
+                }
+            }
+            return response()->json(['status' => true, 'result' => $result], 200, [], JSON_UNESCAPED_UNICODE);
+        } catch(\Exception $e) {
+            return response()->json(['status' => false]);
+        }
     }
 
     /**
@@ -38,7 +59,6 @@ class WelcomeController extends Controller
     public function show($id)
     {
         //
-        return Explanation::find(1);
     }
 
     /**
@@ -51,13 +71,6 @@ class WelcomeController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request, [
-            'content' => 'required'
-        ]);
-        $content = Explanation::find(1);
-        $content->content = $request->input('content');
-        $content->save();
-        return response()->json(['status' => true]);
     }
 
     /**

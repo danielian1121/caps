@@ -4,9 +4,9 @@ namespace App\Http\Controllers\caps\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Explanation;
+use App\Models\Subject;
 
-class WelcomeController extends Controller
+class SubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +14,17 @@ class WelcomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        //
+        return Subject::all();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
         //
     }
@@ -38,7 +49,17 @@ class WelcomeController extends Controller
     public function show($id)
     {
         //
-        return Explanation::find(1);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -51,13 +72,6 @@ class WelcomeController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request, [
-            'content' => 'required'
-        ]);
-        $content = Explanation::find(1);
-        $content->content = $request->input('content');
-        $content->save();
-        return response()->json(['status' => true]);
     }
 
     /**
