@@ -30,8 +30,10 @@ function Teacher() {
     const [question, setQuestion] = useState([])
     const [output, setOutput] = useState()
     useEffect(() => {
+        const array = location.pathname.split('/')
+        const fileId = array[array.length - 1]
         const getData = (() => {
-            axios.get('/api/workshop/08a1').then(res => {
+            axios.get(`/api/workshop/${fileId}`).then(res => {
                 setQuestion(res.data.result)
             })
         })()
