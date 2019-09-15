@@ -46,7 +46,7 @@ class QuestionController extends Controller
     {
         //
         try {
-            $handle = fopen("workshop/${id}.csv", "r");
+            $handle = fopen("wu/workshop/${id}.csv", "r");
             $header = true;
             $result = [];
             while ($csvLine = fgetcsv($handle)) {
